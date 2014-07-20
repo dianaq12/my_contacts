@@ -11,5 +11,28 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require bootstrap
+
  *= require_self
  */
+
+a {
+  outline: none !important;
+}
+
+.tab-content > .active {
+  background: white;
+  margin-top: 10px;
+}
+
+.content {
+  margin-top: 60px;
+}
+
+form .btn-primary {
+  margin-top: 10px;
+}
+
+.trash {
+  width: 20px;
+}

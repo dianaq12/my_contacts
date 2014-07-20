@@ -1,0 +1,34 @@
+<!-- Contact form  -->
+
+<%= simple_form_for @contact, html:{class:"vertical-form"} do |f| %>
+    <div class="row">
+        <div class="col-xs-4">
+            <%= f.input :first_name %>
+            <%= f.input :last_name %>
+            <%= f.input :email %>
+            <%= f.input :home_phone %>
+            <%= f.input :cell_phone %>
+
+        </div>
+
+        <div class="col-xs-4">
+            <%= f.simple_fields_for :addresses do |a| %>
+
+                <%= a.input :id, as: :hidden %>
+                <%= a.input :address_type, as: :select, collection:[["Home","Home"],["Other","Other"]] %>
+                <%= a.input :street %>
+                <%= a.input :city %>
+                <%= a.input :state %>
+                <%= a.input :zip %>
+
+            <% end %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-2 col-xs-offset-2">
+            <%= f.submit "Save", class: "btn btn-primary" %>
+        </div>
+
+    </div>
+<% end %>

@@ -1,0 +1,90 @@
+
+<!-- Create new contact button for each letter -->
+<div class="row">
+    <div class="col-xs-2 col-xs-offset-10">
+        <a class= "btn btn-primary" href="/contacts/new"> New Contact</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs">
+        <% letters().each_with_index do |letter, x| %>
+            <% if x == 0 %>
+                <% css_class = "active" %>
+            <% else %>
+                <% css_class = "" %>
+            <% end %>
+            <li class='<%= css_class %>'>
+              <a href="#<%= letter %>" data-toggle="tab"><%= letter %></a>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <% letters().each_with_index do |letter, x| %>
+
+            <% if x == 0 %>
+                <% css_class = "tab-pane active" %>
+            <% else %>
+                <% css_class = "tab-pane" %>
+            <% end %>
+
+            <!-- Tab pane for each letter -->
+            <div class="<%= css_class %>" id="<%= letter %>">
+
+                <!-- Table displaying all contacts for each letter -->
+                <div class="row">
+                    <div class="col-xs-12">
+
+                        <% contacts =  Contact.starting_with(letter)%>
+
+                        <% if contacts.count > 0 %>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                      <td> Name </td>
+                                      <td> Email </td>
+                                      <td> Cell Phone </td>
+                                      <td>  </td>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <% contacts.each do |contact| %>
+                                        <tr>
+                                            <td>
+                                                <a href="/contacts/<%= contact.id %>">
+                                                    <%= contact.name %>
+                                                </a>
+                                            </td>
+                                            <td> <%= contact.email %>  </td>
+                                            <td> <%= contact.cell_phone %>  </td>
+                                            <td>
+                                                <%= link_to image_tag(image_path('trashcan.png'), class:"trash"), contact_path(contact),
+                                                          data:{:confirm => "Are you sure you want to delete #{contact.name}?"}, :method => :delete %>
+                                            </td>
+
+                                        </tr>
+
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        <% else %>
+                            No contacts in <%= letter %>
+                        <%end%>
+
+                    </div>
+                </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+</div>

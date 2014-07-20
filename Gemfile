@@ -9,9 +9,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.0'
+gem 'autoprefixer-rails'
 gem 'mysql2'
 gem 'thin'
+gem 'simple_form'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

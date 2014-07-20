@@ -1,0 +1,45 @@
+<div class="row">
+
+    <div class="col-xm-6">
+
+      <h3><%= @contact.name %> </h3>
+      <div>
+        <label> Email: </label> <span> <%= @contact.email %></span>
+      </div>
+
+      <div>
+        <label> Home Phone: </label> <span> <%= @contact.home_phone %></span>
+      </div>
+
+      <div>
+        <label> Cell Phone: </label> <span> <%= @contact.cell_phone %></span>
+      </div>
+    </div>
+
+    <div class="col-xm-6">
+      <% if @contact.address.present? %>
+          <h4><%= @contact.address.address_type %> Address</h4>
+
+          <div>
+            <label> Street: </label> <span> <%= @contact.address.street %></span>
+          </div>
+
+          <div>
+            <label> City: </label> <span> <%= @contact.address.city %></span>
+          </div>
+
+          <div>
+            <label> State: </label> <span> <%= @contact.address.state %></span>
+          </div>
+
+          <div>
+            <label> Zip: </label> <span> <%= @contact.address.zip %></span>
+          </div>
+      <% end %>
+
+      <div>
+        <a class = "btn btn-primary" href="/contacts/<%=@contact.id %>/edit"> Edit</a>
+      </div>
+
+    </div>
+</div>
